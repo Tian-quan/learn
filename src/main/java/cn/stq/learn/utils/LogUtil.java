@@ -1,4 +1,4 @@
-package cn.stq.learn.base.utils;
+package cn.stq.learn.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
