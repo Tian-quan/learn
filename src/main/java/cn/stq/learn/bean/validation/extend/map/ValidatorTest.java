@@ -55,5 +55,14 @@ public class ValidatorTest {
 		validMap=ValidatorUtil.validateToMap(user);
 		logger.error(JSON.toJSONString(validMap));
 	}
+	//基本验证
+	@Test
+	public void testValidateToMap1() {
+		Map<String, String> map = new HashMap<>();
+		User user = new User();
+		user.setMap(map);
+		validMap=ValidatorUtil.validateToMap(user);
+		logger.error(JSON.toJSONString(validMap));
+	}
 
 }
