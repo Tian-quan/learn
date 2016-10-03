@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!-- 配置参考:http://www.cnblogs.com/yjmyzz/p/3988114.html 官网地址：http://logging.apache.org/log4j/2.x/ --> 
+<!-- 
+#自定义样式 
+# %r 时间 0 
+# %t 方法名 main 
+# %p 优先级 DEBUG/INFO/ERROR 
+# %c 所属类的全名(包括包名) 
+# %l 发生的位置，在某个类的某行 
+# %m 输出代码中指定的讯息，如log(message)中的message 
+# %n 输出一个换行 
+# %d 输出日志时间点的日期或时间，默认格式为ISO8601 
+# %file 输出日志的java类文件 
+# %line 输出日志所在行 
+--> 
+<!-- log4j定义了8个级别,优先级从高到低依次为：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、 ALL --> 
+<!-- status="off"，可以去掉，它的含义为是否记录log4j2本身的event信息，默认是OFF --> 
+<Configuration status="off" monitorInterval="1800"> 
+
+<!-- 定义变量 --> 
+<properties> 
+<property name="LOG_HOME">logs/log</property> 
+<property name="FILE_NAME">logs</property> 
+<property name="LOG_PATTERN">%d{yyyy-MM-dd hh:mm:ss.SSS} %l [%thread] %n[%-5level] %msg%n</property> 
+</properties> 
+
+<Appenders> 
+<!-- 输出到控制台的日志 --> 
+<Console name="console" target="SYSTEM_OUT"> 
+<PatternLayout pattern="${LOG_PATTERN}" /> 
+</Console> 
+
+<!-- 输出到文件的日志 --> 
+<RollingRandomAccessFile name="running-log" 
+fileName="${LOG_HOME}/${FILE_NAME}.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz"> 
+<!-- filePattern释义: 当单个文件达到指定大小后，会自动将以前的内容，先创建类似 2014-09（年-月）的目录，然后按 "xxx-年-月-日-序号"命名，打成压缩包（很体贴的设计，即省了空间，又不丢失以前的日志信息） --> 
+<PatternLayout 
+pattern="${LOG_PATTERN}" /> 
+<Policies> 
+<TimeBasedTriggeringPolicy /> 
+<SizeBasedTriggeringPolicy size="10 MB" /> 
+</Policies> 
+<DefaultRolloverStrategy max="20" /> 
+</RollingRandomAccessFile> 
+</Appenders> 
+
+<Loggers> 
+<Root level="all"> 
+<AppenderRef ref="console" /> 
+<!--文件appender,开发中不用--> 
+<!--<AppenderRef ref="running-log" />--> 
+</Root> 
+</Loggers> 
+</Configuration>
