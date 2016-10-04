@@ -9,7 +9,7 @@
 	</properties>
 
 	<dependencyManagement>
-		<dependencies>		
+		<dependencies>
 			<!-- ==================以下Spring-Boot====================== -->
 			<!-- Override Spring Data release train provided by Spring Boot -->
 			<dependency>
@@ -70,13 +70,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- spring-boot 热部署 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<!-- ==================以上Spring-Boot====================== -->
 
 		<!-- ==========================Common dependcies========================== -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			</dependency>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
