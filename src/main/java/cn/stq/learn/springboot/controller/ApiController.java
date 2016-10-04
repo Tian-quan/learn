@@ -1,6 +1,5 @@
 package cn.stq.learn.springboot.controller;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +13,7 @@ public class ApiController {
 	@ResponseBody
 	@RequestMapping(value="/test",method={RequestMethod.POST,RequestMethod.GET})
 	public String test(){
-		return "";
+		return "1231231";
 	}
 
 }
