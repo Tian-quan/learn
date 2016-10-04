@@ -1,0 +1,21 @@
+#Spring-boot 默认加载的yml
+server:
+  port: 8888
+
+---
+spring:
+  profiles: company
+db:
+  file: classpath:config/company/db.properties
+config:
+  file: classpath:config/company/config.properties
+...
+
+---
+spring:
+  profiles: home
+db:
+  file: classpath:config/home/db.properties
+config:
+  file: classpath:config/home/config.properties
+...
