@@ -2,20 +2,19 @@ package cn.stq.learn.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/test")
-public class BaseController {
+@RequestMapping("/api")
+public class ApiController {
 	
-	@Value("${greeting}")
-	String greeting;
 	
 	@ResponseBody
-	@RequestMapping("/greeting")
+	@RequestMapping(value="/test",method={RequestMethod.POST,RequestMethod.GET})
 	public String test(){
-		return greeting;
+		return "";
 	}
 
 }
