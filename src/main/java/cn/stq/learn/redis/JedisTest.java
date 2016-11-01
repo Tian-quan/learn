@@ -2,17 +2,15 @@ package cn.stq.learn.redis;
 
 import static org.junit.Assert.assertEquals;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
 
 import cn.stq.learn.utils.TestUtil;
 import redis.clients.jedis.Jedis;
@@ -26,8 +24,9 @@ import redis.clients.jedis.Jedis;
  */
 public class JedisTest {
 
-	private Jedis jedis = null;
-
+	private static Jedis jedis = null;
+	
+	
 	@Before
 	public void before() {
 		//DO 连接Redis,默认端口是6379
@@ -35,6 +34,88 @@ public class JedisTest {
 		assertEquals("PONG", jedis.ping());
 	}
 
+	@Test
+	public void  testConcurrency() {
+		// TODO Auto-generated method stub
+		Counter counter = new Counter();
+		
+		Runnable r = new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				int t = counter.getCount();
+//				if(t >= 0)
+				{
+					System.out.println(t);
+				};
+			}
+		};
+		for(int i=0; i<10;i++){
+			new Thread(r).start();
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private static class Counter{
+		int c=0;
+		Jedis jedis = new Jedis("127.0.0.1");
+		
+		public int getCount() {
+			/*int tmp = c++;
+			return tmp;*/
+			
+			final String key = "counter";
+			String setnxResult = null;
+			try {
+				setnxResult = jedis.set(key, "1", "NX", "EX", 3L);
+			} catch (Exception e) {
+				//System.out.println(e.getMessage());
+				return -101;
+			}
+			//1 if the key was set; 0 if the key was not set
+			if(StringUtils.equals(setnxResult, "OK")){
+				//System.out.println(TestUtil.getFunName()+"  "+ Thread.currentThread().getName()+"--0");
+				int tmp = c;
+				c++;
+//				jedis.expire(key, 1);
+				return tmp;
+			}
+			if(StringUtils.isEmpty(setnxResult)){
+				//System.out.println(TestUtil.getFunName()+"  "+ Thread.currentThread().getName()+"--1");
+//				jedis.expire(key, 1);
+				return 1000;
+			}
+			return -102;
+		}
+	}
+	
+	@Test
+	public void tt() throws InterruptedException{
+		final String key = "key";
+		System.out.println(jedis.set("key", "1", "NX", "EX", 5L));
+		System.out.println(jedis.set("key", "1", "NX", "EX", 5L));
+
+		for(int i=0;i<20;++i){
+			if(!jedis.exists(key)){
+				System.out.println(key+" is expired,and it is not existed any more.");
+				break;
+			}
+			System.out.println(jedis.ttl(key));
+			Thread.sleep(1000);
+		}
+	}
 	/**
 	 * 测试设置键值过期时间.
 	 * @throws InterruptedException
