@@ -6,19 +6,19 @@ package cn.stq.learn.concurrency.privatelock;
  * Created by tianquan.shi on 2016/11/1.
  */
 public class Counter {
-    private int n;
+    private int counter;
     //private lock
     private Object privateLock = new Object();
 
     public int getCount(){
         synchronized (privateLock){
-            return n;
+            return counter;
         }
     }
 
     public void increment(){
         synchronized (privateLock){
-            ++this.n;
+            ++this.counter;
         }
     }
 }
