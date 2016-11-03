@@ -1,8 +1,10 @@
-package cn.stq.learn.springboot.httpclient;
+package cn.stq.learn.springboot.test;
 
-import static org.junit.Assert.*;
+import java.util.Date;
 
 import org.junit.Test;
+
+import cn.stq.learn.springboot.httpclient.HttpUtil;
 
 public class HttpUtilTest {
 
@@ -25,4 +27,8 @@ public class HttpUtilTest {
 		}
 	}
 
+	@Test
+	public void tt(){
+		System.out.println(String.format("%tF %<tT", new Date()));
+	}
 }

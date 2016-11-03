@@ -5,14 +5,14 @@ import java.util.Map;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import cn.stq.learn.bean.validation.extend.map.MapExist.MapExistEntry;
+import cn.stq.learn.bean.validation.extend.map.MapExist.Entry;
 
 
-public class MapExistValidator implements ConstraintValidator<MapExistEntry, Map<String,String>> {
-	private MapExistEntry entry;
+public class MapExistEntryValidator implements ConstraintValidator<Entry, Map<String,String>> {
+	private Entry entry;
 	
 	@Override
-	public void initialize(MapExistEntry constraintAnnotation) {
+	public void initialize(Entry constraintAnnotation) {
 		entry=constraintAnnotation;
 	}
 

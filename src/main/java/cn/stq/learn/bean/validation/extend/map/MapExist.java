@@ -15,7 +15,7 @@ import javax.validation.constraints.AssertFalse.List;
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD, ANNOTATION_TYPE })
 @interface MapExist {
-	MapExistEntry[] value() default {};
+	Entry[] value() default {};
 	String message() default "";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
@@ -23,8 +23,8 @@ import javax.validation.constraints.AssertFalse.List;
 	@Documented
 	@Retention(RUNTIME)
 	@Target({ FIELD, METHOD, ANNOTATION_TYPE })
-	@Constraint(validatedBy = MapExistValidator.class)
-	public @interface MapExistEntry {
+	@Constraint(validatedBy = MapExistEntryValidator.class)
+	public @interface Entry {
 		String key();
 
 		String message();
