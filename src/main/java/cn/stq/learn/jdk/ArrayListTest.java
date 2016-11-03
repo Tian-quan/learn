@@ -11,8 +11,10 @@ import java.util.List;
  */
 public class ArrayListTest {
 
+
     @Test
     public void test002remove() {
+
         ArrayList<Integer> list = new ArrayList<>();
         //DO 添加11个数据,使容量扩到15.
         for (int i = 1; i <= 11; i++) {
