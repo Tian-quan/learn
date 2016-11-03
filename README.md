@@ -1,4 +1,5 @@
 # learn - 学习笔记
+2016-11-3  ArrayList初步学习(jdk)
 2016-11-1  Java并发实践编程(concurrency)
 2016-10-28 Mockito初步学习(mockito)
 2016-10-19 redis初步学习.(redis)
