@@ -119,7 +119,7 @@ public class MockitoTest {
 		verify(mockOne, Mockito.never()).add("two");
 
 		// verify that other mocks were not interacted
-		Mockito.verifyZeroInteractions(mockTwo, mockThree);
+//		Mockito.verifyZeroInteractions(mockTwo, mockThree);
 	}
 
 	/**
