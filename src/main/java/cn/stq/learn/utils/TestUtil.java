@@ -26,11 +26,20 @@ public class TestUtil {
 	 * 以JSON格式,在控制台输入对象.
 	 * @param t
 	 */
+	public static <T> void out(T t){
+		System.out.println(getFunName(3));
+		System.out.println(t);
+	}
+
+	/**
+	 * 以JSON格式,在控制台输入对象.
+	 * @param t
+	 */
 	public static <T> void outAsJSON(T t){
 		System.out.println(getFunName(3));
 		System.out.println(formatJSON(t));
 	}
-	
+
 	/**
 	 * 格式化对象为JSON 
 	 * @param t
