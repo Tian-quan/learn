@@ -25,7 +25,6 @@ public class CycleBarrierTest {
             @Override
             public void run() {
                 System.out.println("裁判宣布比赛结束.");
-
             }
         };
 
@@ -57,7 +56,7 @@ public class CycleBarrierTest {
                 TimeUnit.SECONDS.sleep(runningTime);
                 System.out.println(Thread.currentThread().getId() + "arrived,cost time:" + runningTime );
                 System.out.println(Thread.currentThread().getId() + " waiting juder announce end."+(cyclicBarrier.getNumberWaiting()+1)+" runners is waiting.....");
-                //wait others come to barrier.阻塞这这里,当统计被调用10次后,就执行裁判线程.裁判线程执行后该线程继续往后执行.
+                //wait others come to barrier.阻塞这这里,当等待到达10时,就执行裁判线程.裁判线程执行后该线程继续往后执行.
                 cyclicBarrier.await();
                 System.out.println(Thread.currentThread().getId() + "--go to rest.");
             } catch (InterruptedException e) {

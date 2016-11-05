@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class SemaphoreTest {
     @Test
     public void test() throws InterruptedException {
-        //信号量,五台机器
+        //信号量,3台机器,5个工人.
         Semaphore sem = new Semaphore(3);
         int workerNum = 5;
         ExecutorService executors = Executors.newFixedThreadPool(workerNum);
