@@ -7,7 +7,7 @@ package cn.stq.learn.concurrency.privatelock;
  */
 public class Counter {
     private int counter;
-    //private lock
+    //private LOCK
     private Object privateLock = new Object();
 
     public int getCount(){

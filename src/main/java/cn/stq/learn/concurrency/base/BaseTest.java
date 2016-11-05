@@ -113,7 +113,7 @@ public class BaseTest {
             synchronized (innerLock) {
                 if (num % 2 == 0) {
                     try {
-                        System.out.println(num + " --num is odd, release lock and wait....");
+                        System.out.println(num + " --num is odd, release LOCK and wait....");
                         //释放锁,进入等到被唤醒状态,如果没有持有该锁的进程唤醒,则会一直睡眠.
                         innerLock.wait();
                         System.out.println(num + " --num is odd,exit.");
