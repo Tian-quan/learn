@@ -11,7 +11,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * <b>ReentrantLock</b>,{@link ReentrantLock#tryLock()}会尝试获取锁,该方法立即返回,不会阻塞.{@link ReentrantLock#lock()}会阻塞直到获取锁.测试方法{@link #testReentrantLock()}
- * <b>ReadWriteLock</b>,{@link #testReentrantReadWriteLock()}和{@link #testSync()}展示了读写锁和synchronized关键字来同步的差异.<br/>
+ * <b>ReadWriteLock</b>,{@link #testReentrantReadWriteLockRead()},{@link #testReentrantReadWriteLockWrite()} 和{@link #testSyncRead()},{@link #testSyncWrite()}展示了读写锁和synchronized关键字来同步的差异.<br/>
+ * {@link ReadWriteLock}可在初始化构造时指定是否使用公平特性,即等待最久的线程优先获得锁.<br>
  * 如果有一个线程已经占用了<b>读锁</b>，则此时其他线程如果要申请写锁，则申请写锁的线程会一直等待释放读锁。<br/>
  * 如果有一个线程已经占用了<b>写锁</b>，则此时其他线程如果申请写锁或者读锁，则申请的线程会一直等待释放写锁。<p/>
  *
