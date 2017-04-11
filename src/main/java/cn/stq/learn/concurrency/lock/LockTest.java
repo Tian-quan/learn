@@ -51,7 +51,7 @@ public class LockTest {
         for (int i = 0; i < 3; i++) {
             new Thread(reader).start();
         }
-        TimeUnit.SECONDS.sleep(2L);
+        TimeUnit.SECONDS.sleep(3L);
     }
 
     //使用synchronize同步的方法,会顺序获取锁进入临界区.
@@ -104,7 +104,7 @@ public class LockTest {
 
         }
 
-        //用可冲入读写锁同步读
+        //用可重入读写锁同步写
         private void lockWrite() {
             rwLock.writeLock().lock();
             try {
@@ -119,7 +119,7 @@ public class LockTest {
             }
         }
 
-        //用可冲入读写锁同步读
+        //用可重入读写锁同步读
         private void lockRead() {
             rwLock.readLock().lock();
             try {
